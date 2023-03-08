@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using WebApplication3.Test;
 
 namespace WebApplication3
 {
@@ -13,7 +14,17 @@ namespace WebApplication3
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            var writer = new WriteFooContent();
+
+            foreach (var foo in writer.GetAllFoos())
+            {
+                Console.WriteLine(foo.Name);
+            }
+
+            
+            Console.ReadKey();
+
+            //CreateHostBuilder(args).Build().Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
